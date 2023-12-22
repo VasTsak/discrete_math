@@ -4,6 +4,7 @@
 from collections import namedtuple
 from greedy_search import Greedy
 from dynamic_programming import DynamicProgramming
+from branch_bound import BranchAndBound
 
 Item = namedtuple("Item", ['index', 'value', 'weight'])
 
@@ -49,10 +50,14 @@ def solve_it(input_data):
     
     ###Dynamic Programming ###
 
-    dp.run()
-    value = dp.total_value
-    taken = dp.decision
+    # dp.run()
+    # value = dp.total_value
+    # taken = dp.decision
     
+    bb = BranchAndBound(capacity=capacity, items=items)
+    bb.run()
+    value = bb.max_value
+    taken = bb.decision
 
     # prepare the solution in the specified output format
     output_data = str(value) + ' ' + str(0) + '\n'
